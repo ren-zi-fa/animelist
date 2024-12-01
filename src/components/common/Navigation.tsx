@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useMedia } from 'react-use'
@@ -15,6 +15,8 @@ import {
 	SheetTrigger
 } from '@/components/ui'
 import { MenuIcon } from 'lucide-react'
+import { HeaderLogo } from './HeaderLogo'
+import Image from 'next/image'
 type TypeRoute = {
 	href: string
 	label: string
@@ -62,7 +64,15 @@ export const Navigation = () => {
 				</SheetTrigger>
 				<SheetContent side={'left'} className={'px-2'}>
 					<SheetHeader>
-						<SheetTitle></SheetTitle>
+						<SheetTitle>
+							<Image
+								src={'/logo-animelist.png'}
+								alt="logo"
+								width={100}
+								height={28}
+								className='w-auto h-auto object-cover'
+							/>
+						</SheetTitle>
 						<nav className={'flex flex-col gap-y-2 pt-6'}>
 							{routes.map((route) => (
 								<Button
@@ -75,7 +85,7 @@ export const Navigation = () => {
 								</Button>
 							))}
 						</nav>
-						{/* <SheetDescription></SheetDescription> */}
+						<SheetDescription></SheetDescription>
 					</SheetHeader>
 				</SheetContent>
 			</Sheet>

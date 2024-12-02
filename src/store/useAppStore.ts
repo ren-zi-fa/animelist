@@ -33,7 +33,7 @@ const useAppStore = create<Counts>((set) => ({
 		})),
 	username: 'jokowi',
 	changeUser: (newUsername) => set({ username: newUsername }),
-	githubUser:"rell",
+	githubUser: 'rell',
 	fetchDataGithub: async (name) => {
 		try {
 			const response = await fetch(`https://api.github.com/users/${name}`)
@@ -43,7 +43,7 @@ const useAppStore = create<Counts>((set) => ({
 			console.error('Error fetching data from GitHub:', error)
 			throw error
 		}
-	},
+	}
 }))
 
 export default useAppStore

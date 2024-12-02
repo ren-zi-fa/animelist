@@ -4,33 +4,48 @@ import { useState } from 'react'
 import { searchAnime } from '@/utils/jikanApi'
 import { Input } from './ui'
 import Link from 'next/link'
+import Image from 'next/image'
+
+interface Results {
+	mal_id: string
+	title: string
+	images: Images
+}
+interface ImageUrls {
+	image_url: string
+}
+
+interface Images {
+	jpg: ImageUrls
+	webp: ImageUrls
+}
 
 export default function SearchFilter() {
 	const [query, setQuery] = useState<string>('')
-	const [results, setResults] = useState<any[]>([])
+	const [results, setResults] = useState<Results[]>([])
 
 	const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value
-        setQuery(value)
-        
+		const value = e.target.value
+		setQuery(value)
+
 		if (value.trim() === '') {
-            setResults([])
+			setResults([])
 			return <div className="">kosong</div>
 		}
-        if (value.length > 3){
-            try {
-                const data = await searchAnime(value)
-                setResults(data)
-            } catch (error) {
-                console.error('Error fetching data:', error)
-            }
-
-        }
-
+		if (value.length > 3) {
+			try {
+				const data = await searchAnime(value)
+				setResults(data)
+			} catch (error) {
+				console.error('Error fetching data:', error)
+			}
+		} else if (value.length == 1) {
+			setResults([])
+		}
 	}
 
 	return (
-		<div className="w-full max-w-md mx-auto">
+		<div className="w-1/2 lg:w-full mt-2 mx-auto">
 			<Input
 				type="text"
 				placeholder="Search Anime..."
@@ -38,17 +53,18 @@ export default function SearchFilter() {
 				onChange={handleSearch}
 				className="mb-4"
 			/>
-			<ul className="bg-white border rounded shadow-md max-h-60 overflow-y-auto">
+			<ul className="bg-yellow-50 lg:top-14 max-w-lg mx-4 rounded shadow-md max-h-60 absolute lg:block lg:ms-80 left-4 lg:left-0 overflow-y-auto">
 				{results.map((anime) => (
 					<li
 						key={anime.mal_id}
-						className="p-2 hover:bg-gray-100 cursor-pointer flex"
+						className=" hover:bg-gray-100 cursor-pointer flex items-center p-4 "
 					>
-						<Link href={`detail/${anime.mal_id}`}>
-							<img
+						<Link href={`detail/${anime.mal_id}`} className="px-2">
+							<Image
+								alt={anime.title}
 								src={anime.images.webp.image_url}
-								alt=""
-								className="w-24 h-14"
+								width={100}
+								height={20}
 							/>
 						</Link>
 						<p> {anime.title}</p>

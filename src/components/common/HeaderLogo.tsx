@@ -4,12 +4,16 @@ import React from 'react'
 
 export const HeaderLogo = () => {
 	return (
-		<Link href="/">
-			<div className="items-center hidden lg:flex">
-				<Image src={'/logo-animelist.png'} alt="logo" width={150} height={28} className='h-auto w-auto'/>
-			</div>
-		</Link>
+		<div className="hidden lg:flex">
+			<Link href={'/'}>
+				<Image
+					src={'/logo-animelist.png'}
+					alt="logo"
+					width={200}
+					height={200}
+					className="w-auto h-auto"
+				/>
+			</Link>
+		</div>
 	)
 }
-
-

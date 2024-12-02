@@ -1,40 +1,25 @@
-import { Button } from '@/components/ui'
+import React from 'react'
+import { Button } from '../ui'
 import Link from 'next/link'
 import { cn } from '@/lib'
-import { useEffect, useState } from 'react'
 
-interface INavButtonProps {
-	isActive?: boolean
-	href: string
+interface INavButton {
 	label: string
+	href: string
+	isActive?: boolean
 }
 
-export const NavButton = ({ href, isActive, label }: INavButtonProps) => {
-	const [isClient, setIsClient] = useState<boolean>(false)
-
-	useEffect(() => {
-		setIsClient(true)
-	}, [])
+export const NavButton = ({ label, href, isActive }: INavButton) => {
 	return (
-		<div>
-			{' '}
-			{isClient ? (
-				<div suppressHydrationWarning={true}>
-					<Button
-						asChild
-						size={'sm'}
-						variant={'outline'}
-						className={cn(
-							'w-full lg:w-auto justify-between font-normal hover:bg-white/20 hover:text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white/30 transition',
-							isActive ? 'bg-white/10' : 'bg-transparent'
-						)}
-					>
-						<Link href={href}>{label}</Link>
-					</Button>
-				</div>
-			) : (
-				<button className="bg-gray-200 w-32 h-10 rounded-lg animate-pulse"></button>
+		<Button
+			asChild
+			size={'sm'}
+			className={cn(
+				'w-full lg:w-auto justify-between font-normal hover:bg-white/30 hover:text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white/30 transition',
+				isActive ? 'bg-white/10' : 'bg-transparent'
 			)}
-		</div>
+		>
+			<Link href={href}>{label}</Link>
+		</Button>
 	)
 }

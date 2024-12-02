@@ -1,10 +1,5 @@
 'use client'
-
-import React from 'react'
-import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { useMedia } from 'react-use'
-import { NavButton } from '@/components/common/NavButton'
 import {
 	Button,
 	Sheet,
@@ -13,92 +8,91 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger
-} from '@/components/ui'
+} from '../ui'
 import { MenuIcon } from 'lucide-react'
-import { HeaderLogo } from './HeaderLogo'
+import SearchFilter from '../SearchFilter'
 import Image from 'next/image'
-type TypeRoute = {
-	href: string
-	label: string
-}
+import { usePathname, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { NavButton } from './NavButton'
+
 const routes = [
 	{
 		href: '/',
-		label: 'Overview'
+		label: 'Home'
 	},
 	{
-		href: '/transactions',
-		label: 'Transactions'
+		href: '/Community',
+		label: 'Community'
 	},
 	{
-		href: '/accounts',
-		label: 'Accounts'
-	},
-	{
-		href: '/categories',
-		label: 'Categories'
+		href: '/jikan',
+		label: 'Api Documentation'
 	}
 ]
 
 export const Navigation = () => {
+	const isMobile = useMedia('(max-width:1024px)', false)
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const router = useRouter()
-	const pathname = usePathname()
-	const isMobile = useMedia('(max-width: 1024px)', false)
-
-	const onClick = (href: string) => {
+	const navigate = (href: string) => {
 		router.push(href)
 		setIsOpen(false)
 	}
+
+	const pathName = usePathname()
 	if (isMobile) {
 		return (
-			<Sheet open={isOpen} onOpenChange={setIsOpen}>
-				<SheetTrigger>
-					<div
-						className={
-							'font-normal bg-white/10 hover:bg-white/20  border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white-30 transition '
-						}
-					>
-						<MenuIcon className={'size-6'} />
-					</div>
-				</SheetTrigger>
-				<SheetContent side={'left'} className={'px-2'}>
-					<SheetHeader>
-						<SheetTitle>
-							<Image
-								src={'/logo-animelist.png'}
-								alt="logo"
-								width={100}
-								height={28}
-								className='w-auto h-auto object-cover'
-							/>
-						</SheetTitle>
-						<nav className={'flex flex-col gap-y-2 pt-6'}>
-							{routes.map((route) => (
-								<Button
-									key={route.href}
-									variant={route.href === pathname ? 'secondary' : 'ghost'}
-									onClick={() => onClick(route.href)}
-									className={'w-full justify-start'}
-								>
-									{route.label}
-								</Button>
-							))}
-						</nav>
-						<SheetDescription></SheetDescription>
-					</SheetHeader>
-				</SheetContent>
-			</Sheet>
+			<div className="flex items-center">
+				<SearchFilter />
+				<Sheet open={isOpen} onOpenChange={setIsOpen}>
+					<SheetTrigger asChild>
+						<div
+							className={
+								'flex items-center font-normal px-4 hover:bg-white/20  border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white-30 transition '
+							}
+						>
+							<MenuIcon className={'size-8  ml-auto'} />
+						</div>
+					</SheetTrigger>
+					<SheetContent side={'left'}>
+						<SheetHeader>
+							<SheetTitle>
+								<Image
+									src={'/logo-animelist.png'}
+									alt="logo"
+									width={150}
+									height={30}
+								/>
+							</SheetTitle>
+							<nav className="flex flex-col gap-y-4 py-4 ">
+								{routes.map((route) => (
+									<Button
+										key={route.href}
+										variant={route.href == pathName ? 'secondary' : 'ghost'}
+										className="w-full justify-start"
+										onClick={() => navigate(route.href)}
+									>
+										{route.label}
+									</Button>
+								))}
+							</nav>
+
+							<SheetDescription></SheetDescription>
+						</SheetHeader>
+					</SheetContent>
+				</Sheet>
+			</div>
 		)
 	}
 	return (
-		<nav className={'hidden lg:flex items-center gap-x-2 overflow-x-auto'}>
+		<nav className="hidden lg:flex  items-center gap-x-2 overflow-x-auto">
 			{routes.map((route) => (
 				<NavButton
 					key={route.href}
 					href={route.href}
 					label={route.label}
-					isActive={pathname === route.href}
+					isActive={route.href == pathName}
 				/>
 			))}
 		</nav>

@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { HeaderLogo, Navigation } from '@/components/common'
+import React from 'react'
+import { HeaderLogo } from './HeaderLogo'
+import { Navigation } from './Navigation'
+import SearchFilter from '../SearchFilter'
 
 export const Header = () => {
 	return (
-		<header className="bg-gradient-to-b from-green-700 to-green-300 px-4 py-8 lg:px-14 pb-36">
-			<div className="max-w-screen-2xl mx-auto">
-            <div className="w-full flex items-center justify-between mb-14">
-                <div className="flex items-center lg:gap-16">
-                    <HeaderLogo />
-                    <Navigation />
-                </div>
-            </div>
-        </div>
+		<header className="bg-gradient-to-b from-violet-500 to-violet-300 lg:max-w-screen-xl lg:py-0  lg:mx-10 px-4 py-1 lg:px-14 ">
+			<div className="max-w-screen-2xl ">
+				<div className="lg:flex justify-between items-center">
+					<HeaderLogo />
+					<div className="hidden lg:inline-block w-1/4">
+						<SearchFilter />
+					</div>
+					<Navigation />
+				</div>
+			</div>
 		</header>
 	)
 }

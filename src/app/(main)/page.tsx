@@ -1,7 +1,8 @@
+import { AnimeList } from '@/components/common'
 import React from 'react'
 
 const Main = () => {
-	return <div>Main</div>
+	return <AnimeList/>
 }
 
 export default Main

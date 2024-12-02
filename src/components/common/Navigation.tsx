@@ -10,11 +10,12 @@ import {
 	SheetTrigger
 } from '../ui'
 import { MenuIcon } from 'lucide-react'
-import SearchFilter from '../SearchFilter'
+
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { NavButton } from './NavButton'
+import { SearchFilter } from './SearchFilter'
 
 const routes = [
 	{

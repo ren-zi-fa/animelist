@@ -76,3 +76,33 @@ body {
 		@apply bg-background text-foreground;
 	}
 }
+
+.card {
+	position: relative;
+  }
+  
+  .card:hover .card-details {
+	opacity: 1;
+  }
+  
+  .card:hover .card-details h4,
+  .card:hover .card-details p {
+	transform: translateY(0);
+  }
+  
+  .card-details {
+	background: rgba(101, 8, 163, 0.75);
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	text-align: center;
+	opacity: 0;
+	transition: 350ms;
+  }
+  
+  .card-details h4,
+  .card-details p {
+	transform: translateY(20px);
+	transition: 350ms;
+  }

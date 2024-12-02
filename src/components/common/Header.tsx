@@ -1,7 +1,9 @@
 import React from 'react'
 import { HeaderLogo } from './HeaderLogo'
 import { Navigation } from './Navigation'
-import SearchFilter from '../SearchFilter'
+import { SearchFilter } from './SearchFilter'
+
+
 
 export const Header = () => {
 	return (

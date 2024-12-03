@@ -106,3 +106,24 @@ body {
 	transform: translateY(20px);
 	transition: 350ms;
   }
+  /* Tambahkan ini ke file CSS Anda */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-circle {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+    width: 50px; /* Ukuran loader */
+    height: 50px;
+    border: 5px solid rgba(254, 233, 233, 0.1); /* Warna latar belakang */
+    border-top-color: #ffffff; /* Warna utama */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Animasi rotasi */
+}

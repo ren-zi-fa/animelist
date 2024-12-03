@@ -7,7 +7,7 @@ const MainLayout = ({ children }: PropsWithChildren) => {
 	return (
 		<>
 			<Header />
-			<main className=" lg:px-10">{children}</main>
+			<main className="lg:px-10 ">{children}</main>
 		</>
 	)
 }

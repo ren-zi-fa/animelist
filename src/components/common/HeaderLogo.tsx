@@ -11,7 +11,7 @@ export const HeaderLogo = () => {
 					alt="logo"
 					width={200}
 					height={200}
-					className="w-auto h-auto"
+					className="w-auto h-auto lg:w-32"
 				/>
 			</Link>
 		</div>

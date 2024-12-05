@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosInstance } from "@/lib";
 import { ApiResponse, Anime } from "./typeResponse";
 
-export const fetchSeasonsUpcoming = () => {
+export const fetchSchedules = () => {
     return useQuery<Anime[]>({
-        queryKey:['fetch.upcoming'],
+        queryKey:['fetch.schedules'],
         queryFn:async (): Promise<Anime[]> => {
-            const dataSeasonUpcoming: ApiResponse<Anime[]> = await AxiosInstance.get("/seasons/upcoming");
-            return dataSeasonUpcoming.data.data;
+            const dataSchedules: ApiResponse<Anime[]> = await AxiosInstance.get("/seasons/now?limit=6");
+            return dataSchedules.data.data;
           },
     })
   };

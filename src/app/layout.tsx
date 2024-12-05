@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 import { QueryProvider } from '@/providers/QueryProvider'
+import { Header } from '@/components/common'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -30,7 +31,10 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 				suppressHydrationWarning={true}
 			>
-				<QueryProvider>{children}</QueryProvider>
+				<QueryProvider>
+				<Header />
+				<main className="lg:px-10 ">{children}</main>
+				</QueryProvider>
 			</body>
 		</html>
 	)

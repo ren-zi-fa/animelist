@@ -1,14 +1,14 @@
 import { AxiosInstance } from "@/lib";
 import { useQuery } from "@tanstack/react-query";
-import { ApiResponse, TopAnime } from "./typeResponse";
+import { ApiResponse, Anime } from "./typeResponse";
 
 
 
 export const fetchTopAnime = () => {
-    return useQuery<TopAnime[]>({
+    return useQuery<Anime[]>({
         queryKey:['fetch.topAnime'],
-        queryFn:async (): Promise<TopAnime[]> => {
-            const dataTopAnime: ApiResponse<TopAnime[]> = await AxiosInstance.get("/top/anime?limit=10");
+        queryFn:async (): Promise<Anime[]> => {
+            const dataTopAnime: ApiResponse<Anime[]> = await AxiosInstance.get("/top/anime?limit=10");
             return dataTopAnime.data.data;
           },
     })

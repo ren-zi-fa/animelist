@@ -7,55 +7,18 @@ import {
 	CarouselContent,
 	CarouselItem,
 	CarouselNext,
-	CarouselPrevious,
-	Skeleton
+	CarouselPrevious
 } from '../ui'
 import Image from 'next/image'
 import { useMedia } from 'react-use'
+import { SkeletonAnimeCarousel } from './SkeletonAnime'
 
 export const UpcomingAnimeCarousel = () => {
 	const { data: upcomingAnime, error, isLoading } = fetchSeasonsUpcoming()
 	const isMobile = useMedia('(max-width:1024px)', false)
 	if (isLoading && !isMobile) {
-		return (
-			<div className="flex items-center justify-center gap-4">
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-			</div>
-		)
-	} else if (isLoading && isMobile) {
-		return (
-			<div className="flex items-center justify-center gap-4">
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-			</div>
-		)
+		return <SkeletonAnimeCarousel />
 	}
-    
 	if (error) return <div>Error: {error.message}</div>
 	return (
 		<Carousel

@@ -3,7 +3,7 @@ import { Anime, FetchAnimeById } from '@/tanstack'
 import Image from 'next/image'
 import React from 'react'
 
-export const AnimeDetail = ({ query }: any) => {
+export const AnimeDetail = ({ query }: { query: string }) => {
 	const { data: details } = FetchAnimeById(query)
 	const renderDetails = () => {
 		if (!details) return null

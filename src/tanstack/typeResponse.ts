@@ -12,6 +12,21 @@ export interface Anime {
 	streaming: Streaming[]
 	status: string
 }
+export interface AnimeRecommendation {
+	mal_id: string
+	entry: Entry[]
+}
+export interface ApiResponseRecommendation<T> {
+	data: {
+		data:T
+	}
+}
+type Entry = {
+	mal_id: string
+	title: string
+	images: Images
+}
+
 
 interface Images {
 	webp: ImageUrl
@@ -36,6 +51,7 @@ export interface ApiResponse<T> {
 		data: T
 	}
 }
+
 export interface ApiResponseById<T> {
 	data: T
 }

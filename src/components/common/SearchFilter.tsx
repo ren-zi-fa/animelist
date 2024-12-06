@@ -3,10 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { Input } from '../ui'
-import Link from 'next/link'
 import Image from 'next/image'
 import { searchAnime } from '@/tanstack/SearchAnime'
 import { redirect, usePathname, useRouter } from 'next/navigation'
+import { Search } from 'lucide-react'
 
 export function SearchFilter() {
 	const router = useRouter()
@@ -46,6 +46,14 @@ export function SearchFilter() {
 			setDebouncedQuery('')
 		}
 	}
+	const handleClickSearch = (
+		e: React.MouseEvent<SVGSVGElement, MouseEvent>
+	) => {
+		e.preventDefault()
+		router.push(`/search/${debouncedQuery.trim()}`)
+		setDebouncedQuery('')
+		
+	}
 
 	if (error) return <div>Error: {error.message}</div>
 
@@ -74,6 +82,12 @@ export function SearchFilter() {
 				onChange={handleInputChange}
 				onKeyDown={handleKeyDown}
 				className="mb-4"
+			/>
+
+			<Search
+				className="relative left-32 -top-12 lg:left-60 lg:-top-12 "
+				onClick={handleClickSearch}
+				width={20}
 			/>
 			{handleLoading()}
 			<ul className="bg-yellow-50 z-20 lg:top-14 max-w-lg mx-4 rounded shadow-md max-h-60 absolute lg:block lg:ms-80 left-4 lg:-left-5 overflow-y-auto">

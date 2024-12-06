@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Card, CardContent, Skeleton } from '@/components/ui'
+import { Card, CardContent } from '@/components/ui'
 import {
 	Carousel,
 	CarouselContent,
@@ -10,36 +10,16 @@ import {
 } from '@/components/ui'
 import { fetchTopAnime } from '@/tanstack'
 import Image from 'next/image'
+import { useMedia } from 'react-use'
+import { SkeletonAnimeCarousel } from './SkeletonAnime'
 
 export const TopAnimeCarousel = () => {
 	const { data: topAnime, isLoading, error } = fetchTopAnime()
-	if (isLoading) {
-		return (
-			<div className="flex items-center justify-center gap-4">
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-				<div className="">
-					<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
-					<div className="space-y-2">
-						<Skeleton className="h-4 w-[200px]" />
-						<Skeleton className="h-4 w-[160px]" />
-					</div>
-				</div>
-			</div>
-		)
-	}
+	const isMobile = useMedia('(max-width:1024px)', false)
+
+	if (isLoading && !isMobile) {
+		return <SkeletonAnimeCarousel />;
+	  }
 	if (error) return <div>Error: {error.message}</div>
 
 	return (

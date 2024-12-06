@@ -1,11 +1,14 @@
 import { fetchSchedules } from '@/tanstack/FetchSchedules'
 import Image from 'next/image'
 import React from 'react'
+import { SkeletonAnimeSchedule } from './SkeletonAnime'
 
 export const AnimeSchedules = () => {
 	const { data: schedules, isLoading, error } = fetchSchedules()
 	if (error) return <div>Error: {error.message}</div>
-	if (isLoading) return <div className="">loading...</div>
+	if (isLoading) {
+		return <SkeletonAnimeSchedule />
+	}
 
 	return (
 		<div className="flex flex-col items-center justify-center px-4">

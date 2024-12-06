@@ -6,14 +6,11 @@ import React from 'react'
 
 const Detail = ({ params }: { params: { id: string } }) => {
 	const { id } = params
-
 	return (
-        <>
-            <div className="">
-                 <AnimeDetail query={id}/>
-            </div>
-        </>
-    )
+		<>
+			<AnimeDetail query={id} />
+		</>
+	)
 }
 
 export default Detail

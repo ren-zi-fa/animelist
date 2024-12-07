@@ -2,10 +2,13 @@
 import { Anime, FetchAnimeById } from '@/tanstack'
 import Image from 'next/image'
 import React from 'react'
+import { useMedia } from 'react-use'
 
 export const AnimeDetail = ({ query }: { query: string }) => {
 	const { data: details } = FetchAnimeById(query)
-	const renderDetails = () => {
+	const isMobile = useMedia('(max-width:1024px)', false)
+
+	const renderDetailsDesktop = () => {
 		if (!details) return null
 		return Object.values(details).map((detail: Anime) => (
 			<div key={detail.mal_id} className="">
@@ -21,7 +24,7 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 							height={100}
 						/>
 					</div>
-					<div className="col-span-4 px-4">
+					<div className="lg:col-span-4 px-4">
 						<div className="flex mt-4 border-[1px] py-3 w-auto">
 							<div className="text-center px-4  border-r-[1px]">
 								<p className="px-3 bg-gray-600 text-white font-semibold text-sm uppercase">
@@ -45,24 +48,53 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 								</h2>
 							</div>
 							<div className=" px-2 border-r-[1px] ">
-								<h1 className="text-center items-center mt-4">{detail.rating}</h1>
+								<h1 className="text-center items-center mt-4">
+									{detail.rating}
+								</h1>
 							</div>
 							<div className=" px-1 ">
-								<h1 className="text-center items-center mt-4">{detail.status}</h1>
+								<h1 className="text-center items-center mt-4">
+									{detail.status}
+								</h1>
 							</div>
-						
 						</div>
-						<h1 className=' text-white border-b-[1px] mt-4'>Synopsis</h1>
+						<h1 className=" text-white border-b-[1px] mt-4">Synopsis</h1>
 						<p>{detail.synopsis}</p>
 					</div>
 				</div>
 			</div>
 		))
 	}
+	const renderDetailsMobile = () => {
+		if (!details) return null
+		return Object.values(details).map((detail: Anime) => (
+			<div key={detail.mal_id} className="">
+				<div className="text-xl font-bold text-white px-4 py-2 border-b-[1px]">
+					{detail.title}
+				</div>
+				<div className="grid grid-cols-2 ">
+					<div className="col-span-2 py-2 flex justify-center mr-10 border-r-[1px]">
+						<Image
+							src={detail.images.webp.image_url}
+							alt={detail.title}
+							width={280}
+							height={100}
+						/>
+					</div>
+				</div>
+			</div>
+		))
+	}
 
+	const whichRender = () => {
+		if (!isMobile) {
+			return renderDetailsDesktop()
+		}
+		return renderDetailsMobile()
+	}
 	return (
 		<div className="bg-gradient-to-b from-violet-300 to-violet-600 ">
-			{renderDetails()}
+			{whichRender()}
 		</div>
 	)
 }

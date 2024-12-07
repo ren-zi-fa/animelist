@@ -5,6 +5,7 @@ import { AnimeDetail } from '@/components/common'
 import React from 'react'
 
 const Detail = ({ params }: { params: { id: string } }) => {
+
 	const { id } = params
 	return (
 		<>

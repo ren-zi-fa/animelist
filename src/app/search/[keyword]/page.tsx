@@ -1,4 +1,3 @@
-'use client'
 
 import { SearchResultAll } from '@/components/common'
 import React from 'react'

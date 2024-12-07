@@ -11,7 +11,9 @@ export interface Anime {
 	rating: string
 	streaming: Streaming[]
 	status: string
+	episodes: string
 }
+
 export interface AnimeRecommendation {
 	mal_id: string
 	entry: Entry[]

@@ -12,6 +12,8 @@ import {
 import Image from 'next/image'
 import { useMedia } from 'react-use'
 import { SkeletonAnimeCarousel } from './SkeletonAnime'
+import { cn } from '@/lib'
+import { MonitorPlay, Star } from 'lucide-react'
 
 export const UpcomingAnimeCarousel = () => {
 	const { data: upcomingAnime, error, isLoading } = fetchSeasonsUpcoming()
@@ -32,24 +34,29 @@ export const UpcomingAnimeCarousel = () => {
 				{upcomingAnime?.map((anime, index) => (
 					<CarouselItem
 						key={`${anime.mal_id}-${index}`}
-						className="md:basis-1/2 lg:basis-1/4 "
+						className="md:basis-1/2 lg:basis-1/4"
 					>
-						<div className=" card overflow-hidden rounded-md flex-shrink-0 select-none cursor-pointer ">
+						<div className="group relative overflow-hidden flex-shrink-0 ">
 							<Card>
-								<CardContent className="flex items-center justify-center p-0 bg-violet-500">
+								<CardContent className="cursor-pointer p-0 ">
 									<Image
 										src={anime.images.webp.image_url}
 										alt={anime.title}
 										width={0}
 										height={0}
 										sizes="100vw"
-										className="w-full h-[200px] object-cover  "
+										className="w-full h-[200px] object-cover "
 									/>
 								</CardContent>
-								<div className="card-details">
-									<h4 className="text-xl text-center text-gray-200">
+								<div className="">
+									<p
+										className={cn(
+											'absolute bottom-0 left-0 w-full bg-black bg-opacity-75 text-white text-center transition-all duration-300 overflow-hidden',
+											'group-hover:h-24 h-6'
+										)}
+									>
 										{anime.title}
-									</h4>
+									</p>
 								</div>
 							</Card>
 						</div>

@@ -1,37 +1,28 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-
 import { Input } from '../ui'
 import Image from 'next/image'
 import { searchAnime } from '@/tanstack/SearchAnime'
-import { redirect, usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
+import { filterStore } from '@/store'
+import { useDebouncedInput } from '@/hook/useDebounceInput'
+import Link from 'next/link'
 
 export function SearchFilter() {
 	const router = useRouter()
-	const pathname = usePathname()
-	const debounce = require('lodash.debounce')
-	const [debouncedQuery, setDebouncedQuery] = useState<string>('')
+	const { debouncedQuery, setDebouncedQuery } = filterStore()
 	const { data: dataSearch, isLoading, error } = searchAnime(debouncedQuery)
 
-	const debouncedSetQuery = useMemo(
-		() =>
-			debounce((value: string) => {
-				setDebouncedQuery(value)
-			}, 300),
-		[]
-	)
+	// untuk mendelay query yang masuk
+	useDebouncedInput((value: string) => {
+		setDebouncedQuery(value)
+	}, 300)
 
-	useEffect(() => {
-		return () => {
-			debouncedSetQuery.cancel()
-		}
-	}, [debouncedSetQuery])
-
+	// ketika user menginputkan keyword
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-		debouncedSetQuery(value)
+		const value = e.target.value.trim()
+		setDebouncedQuery(value)
 	}
 
 	const handleLoading = () => {
@@ -41,6 +32,7 @@ export function SearchFilter() {
 	}
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (debouncedQuery === '') return
 		if (e.key === 'Enter' && debouncedQuery.trim()) {
 			router.push(`/search/${debouncedQuery.trim()}`)
 			setDebouncedQuery('')
@@ -49,10 +41,18 @@ export function SearchFilter() {
 	const handleClickSearch = (
 		e: React.MouseEvent<SVGSVGElement, MouseEvent>
 	) => {
+		if (debouncedQuery === '') return
 		e.preventDefault()
 		router.push(`/search/${debouncedQuery.trim()}`)
 		setDebouncedQuery('')
-		
+	}
+	const handleClickNavigate = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: string
+	) => {
+		e.preventDefault()
+		router.push(`/detail/${id}`)
+		setDebouncedQuery('')
 	}
 
 	if (error) return <div>Error: {error.message}</div>
@@ -60,7 +60,10 @@ export function SearchFilter() {
 	const renderResult = () => {
 		return dataSearch?.map((anime) => (
 			<li key={anime.mal_id} className=" hover:bg-gray-100 cursor-pointer p-4 ">
-				<a href={`/detail/${anime.mal_id}`} className="flex items-center gap-2">
+				<div
+					onClick={(e) => handleClickNavigate(e, anime.mal_id)}
+					className="flex items-center gap-2"
+				>
 					<Image
 						alt={anime.title}
 						src={anime.images.webp.image_url}
@@ -69,26 +72,28 @@ export function SearchFilter() {
 						className="h-auto w-auto object-cover"
 					/>
 					<p> {anime.title}</p>
-				</a>
+				</div>
 			</li>
 		))
 	}
 
 	return (
 		<div className="w-1/2 lg:w-full mt-2 mx-auto">
-			<Input
-				type="text"
-				placeholder={`Search Anime... `}
-				onChange={handleInputChange}
-				onKeyDown={handleKeyDown}
-				className="mb-4"
-			/>
+			<div className="relative">
+				<Input
+					type="text"
+					placeholder={`Search Anime... `}
+					onChange={handleInputChange}
+					onKeyDown={handleKeyDown}
+					className="mb-4 "
+				/>
 
-			<Search
-				className="relative left-32 -top-12 lg:left-60 lg:-top-12 "
-				onClick={handleClickSearch}
-				width={20}
-			/>
+				<Search
+					className="absolute right-2 bottom-2 lg:right-2 lg:bottom-2 select-none cursor-pointer "
+					onClick={handleClickSearch}
+					width={20}
+				/>
+			</div>
 			{handleLoading()}
 			<ul className="bg-yellow-50 z-20 lg:top-14 max-w-lg mx-4 rounded shadow-md max-h-60 absolute lg:block lg:ms-80 left-4 lg:-left-5 overflow-y-auto">
 				{renderResult()}

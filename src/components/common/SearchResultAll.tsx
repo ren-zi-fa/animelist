@@ -1,3 +1,5 @@
+'use client'
+
 import { fetchRecommendation, searchAnime } from '@/tanstack'
 import Image from 'next/image'
 import React from 'react'
@@ -45,14 +47,23 @@ export const SearchResultAll = ({ keyword }: { keyword: string }) => {
 				<div className="">
 					<p className="ml-80 text-2xl">
 						{' '}
-						result of : {decodeURIComponent(keyword)} Not Found
+						result of :{' '}
+						<span className="underline text-red-600 font-bold">
+							{decodeURIComponent(keyword)}
+						</span>{' '}
+						Not Found
 					</p>
 
 					{renderRecommendationAnime()}
 				</div>
 			)}
 			{(results || []).length > 0 && (
-				<div className="ml-10 ">Result Of : {decodeURIComponent(keyword)}</div>
+				<div className="ml-10 ">
+					Result Of :{' '}
+					<span className="underline text-red-600 font-bold">
+						{decodeURIComponent(keyword)}
+					</span>{' '}
+				</div>
 			)}
 
 			<div className="grid grid-cols-5 p-8 gap-7">

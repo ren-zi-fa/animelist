@@ -17,7 +17,7 @@ export const AnimeSchedules = () => {
 			</div>
 			{schedules?.map((schedule, index) => (
 				<div
-					className="p-4 bg-violet-900 w-full px-2 text-white "
+					className="py-2 bg-violet-900 w-full px-2 text-white "
 					key={schedule.mal_id}
 				>
 					<div className="flex">

@@ -1,4 +1,3 @@
-
 export * from './FetchTopAnime'
 export * from './typeResponse'
 export * from './FetchSeasonUpcoming'

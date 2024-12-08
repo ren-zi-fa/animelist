@@ -2,7 +2,7 @@ import { AnimeList } from '@/components/common'
 import React from 'react'
 
 const Main = () => {
-	return <AnimeList/>
+	return <AnimeList />
 }
 
 export default Main

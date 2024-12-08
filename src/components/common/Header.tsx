@@ -3,8 +3,6 @@ import { HeaderLogo } from './HeaderLogo'
 import { Navigation } from './Navigation'
 import { SearchFilter } from './SearchFilter'
 
-
-
 export const Header = () => {
 	return (
 		<header className="bg-gradient-to-b from-violet-500 to-violet-300 lg:py-0  lg:mx-10 px-4 py-1 lg:px-14 ">

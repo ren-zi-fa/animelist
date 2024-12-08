@@ -6,24 +6,32 @@ import { searchAnime } from '@/tanstack/SearchAnime'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { filterStore } from '@/store'
-import { useDebouncedInput } from '@/hook/useDebounceInput'
+// import { useDebouncedInput } from '@/hook/useDebounceInput'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export function SearchFilter() {
 	const router = useRouter()
 	const { debouncedQuery, setDebouncedQuery } = filterStore()
+	const [queryKeyword, setQueryKeyword] = useState<string>('')
 	const { data: dataSearch, isLoading, error } = searchAnime(debouncedQuery)
 
-	// untuk mendelay query yang masuk
-	useDebouncedInput((value: string) => {
-		setDebouncedQuery(value)
-	}, 300)
+	// useDebouncedInput((value: string) => {
+	// 	setDebouncedQuery(value)
+	// }, 600)
 
-	// ketika user menginputkan keyword
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.trim()
-		setDebouncedQuery(value)
+		setQueryKeyword(value)
 	}
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setDebouncedQuery(queryKeyword)
+		}, 500)
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [queryKeyword])
 
 	const handleLoading = () => {
 		if (isLoading) {

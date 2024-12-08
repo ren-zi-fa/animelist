@@ -14,12 +14,14 @@ export const AnimeList = () => {
 					<TopAnimeCarousel />
 				</div>
 				<div className="mb-10">
-					<h1 className="text-center text-3xl mb-4 text-gray-300">Seasonal Upcoming Anime</h1>
+					<h1 className="text-center text-3xl mb-4 text-gray-300">
+						Seasonal Upcoming Anime
+					</h1>
 					<UpcomingAnimeCarousel />
 				</div>
 			</div>
 			<div className="col-span-2  bg-gradient-to-t mt-5 from-violet-500 to-violet-300 ">
-				<AnimeSchedules/>
+				<AnimeSchedules />
 			</div>
 		</div>
 	)

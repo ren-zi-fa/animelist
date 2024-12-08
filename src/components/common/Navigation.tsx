@@ -64,7 +64,7 @@ export const Navigation = () => {
 									alt="logo"
 									width={150}
 									height={30}
-									className='w-auto h-auto'
+									className="w-auto h-auto"
 								/>
 							</SheetTitle>
 							<nav className="flex flex-col gap-y-4 py-4 ">

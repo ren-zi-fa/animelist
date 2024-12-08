@@ -12,6 +12,11 @@ export interface Anime {
 	streaming: Streaming[]
 	status: string
 	episodes: string
+	genres: Genre[]
+}
+type Genre = {
+	type: string
+	name: string
 }
 
 export interface AnimeRecommendation {
@@ -20,7 +25,7 @@ export interface AnimeRecommendation {
 }
 export interface ApiResponseRecommendation<T> {
 	data: {
-		data:T
+		data: T
 	}
 }
 type Entry = {
@@ -28,7 +33,6 @@ type Entry = {
 	title: string
 	images: Images
 }
-
 
 interface Images {
 	webp: ImageUrl

@@ -64,7 +64,7 @@ export const TopAnimeCarousel = () => {
 										<span className=" text-sm"> {anime.broadcast.day}</span>
 									</p>
 								</div>
-								<p className="absolute flex items-center -top-16 bg-opacity-75   gap-2 h-fit text-white px-2 left-0 mt-16 bg-black">
+								<p className="absolute flex items-center -top-16 bg-opacity-75  gap-2 h-fit text-white px-2 left-0 mt-16 bg-black">
 									<MonitorPlay width={15} />
 									<span className=" text-sm">Episode {anime.episodes}</span>
 								</p>

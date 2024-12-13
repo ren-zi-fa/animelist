@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 interface Counts {
 	count: number
 	increase: () => void
@@ -9,18 +11,18 @@ interface Counts {
 	githubUser: any
 	fetchDataGithub: (username: string) => Promise<void>
 }
-interface GitHubUser {
-	login?: string
-	id?: number
-	avatar_url?: string
-	html_url?: string
-	name?: string
-	company?: string
-	blog?: string
-	location?: string
-	email?: string
-	bio?: string
-}
+// interface GitHubUser {
+// 	login?: string
+// 	id?: number
+// 	avatar_url?: string
+// 	html_url?: string
+// 	name?: string
+// 	company?: string
+// 	blog?: string
+// 	location?: string
+// 	email?: string
+// 	bio?: string
+// }
 const useAppStore = create<Counts>((set) => ({
 	count: 0,
 	increase: () =>

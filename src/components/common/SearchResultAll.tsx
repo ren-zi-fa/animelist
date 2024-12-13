@@ -8,7 +8,6 @@ export const SearchResultAll = ({ keyword }: { keyword: string }) => {
 	const { data: results, isError, isLoading } = searchAnime(keyword)
 	const {
 		data: recomendations,
-		isError: errroRecommendation,
 		isLoading: loadingRecomendation
 	} = fetchRecommendation()
 

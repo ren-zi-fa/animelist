@@ -1,8 +1,8 @@
 import React from 'react'
-import { Skeleton } from '../ui'
+import { Skeleton } from '../../ui'
 
 export const SkeletonAnimeCarousel = () => (
-	<div className="flex items-center justify-center gap-4">
+	<div className="lg:flex items-center justify-center gap-4 hidden">
 		<div className="">
 			<Skeleton className="w-full h-[200px] rounded-xl mb-2" />
 			<div className="space-y-2">
@@ -27,7 +27,7 @@ export const SkeletonAnimeCarousel = () => (
 	</div>
 )
 
-export const SkeletonAnimeSchedule = () => (
+export const SkeletonAnimeList = () => (
 	<div className="flex flex-col items-center justify-center gap-4">
 		<div className="flex px-3">
 			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />

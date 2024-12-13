@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { filterStore } from '@/store'
 // import { useDebouncedInput } from '@/hook/useDebounceInput'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export function SearchFilter() {
@@ -31,7 +30,7 @@ export function SearchFilter() {
 		return () => {
 			clearTimeout(timeout)
 		}
-	}, [queryKeyword])
+	}, [queryKeyword, setDebouncedQuery])
 
 	const handleLoading = () => {
 		if (isLoading) {

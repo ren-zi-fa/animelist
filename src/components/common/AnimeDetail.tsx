@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import { useMedia } from 'react-use'
 
+
 export const AnimeDetail = ({ query }: { query: string }) => {
 	const { data: details } = FetchAnimeById(query)
 	const isMobile = useMedia('(max-width:1024px)', false)
@@ -68,19 +69,48 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 	const renderDetailsMobile = () => {
 		if (!details) return null
 		return Object.values(details).map((detail: Anime) => (
-			<div key={detail.mal_id} className="">
-				<div className="text-xl font-bold text-white px-4 py-2 border-b-[1px]">
-					{detail.title}
+			<div key={detail.mal_id} className=" p-0 text-white">
+				<div className=" bg-violet-500 text-center rounded-md mb-4">
+					<p className="p-4  text-xl">{detail.title}</p>
 				</div>
-				<div className="grid grid-cols-2 ">
-					<div className="col-span-2 py-2 flex justify-center mr-10 border-r-[1px]">
-						<Image
-							src={detail.images.webp.image_url}
-							alt={detail.title}
-							width={280}
-							height={100}
-						/>
-					</div>
+				<Image
+					src={detail.images.webp.image_url}
+					width={200}
+					height={70}
+					alt={detail.title}
+					className="mx-auto mb-4"
+				/>
+				<div className="">
+					<table >
+						<tr >
+							<td>Title </td>
+							<td> :</td>
+							<td>{detail.title}</td>
+						</tr>
+
+						<tr>
+							<td>Score</td>
+							<td>:</td>
+							<td>{detail.score}</td>
+						</tr>
+						<tr>
+							<td>Members</td>
+							<td>:</td>
+							<td>{detail.members}</td>
+						</tr>
+						<tr>
+							<td>Rating</td>
+							<td>:</td>
+							<td>{detail.rating}</td>
+						</tr>
+						<tr>
+							<td>Popularity</td>
+							<td>:</td>
+							<td>{detail.members}</td>
+						</tr>
+					</table>
+					<p className='font-sans text-yellow-400 my-3 text-2xl text-center'>synopsis</p>
+					<p>{detail.synopsis}</p>
 				</div>
 			</div>
 		))
@@ -92,9 +122,5 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 		}
 		return renderDetailsMobile()
 	}
-	return (
-		<div className="bg-gradient-to-b from-violet-300 to-violet-600 ">
-			{whichRender()}
-		</div>
-	)
+	return <div className="h-full">{whichRender()}</div>
 }

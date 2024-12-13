@@ -1,13 +1,15 @@
 import { fetchSchedules } from '@/tanstack/FetchSchedules'
 import Image from 'next/image'
 import React from 'react'
-import { SkeletonAnimeSchedule } from './SkeletonAnime'
+import { SkeletonAnimeList } from './skeleton/SkeletonAnime'
+import { useMedia } from 'react-use'
 
 export const AnimeSchedules = () => {
 	const { data: schedules, isLoading, error } = fetchSchedules()
+	const isMobile = useMedia('(max-width:1024px)',false)
 	if (error) return <div>Error: {error.message}</div>
-	if (isLoading) {
-		return <SkeletonAnimeSchedule />
+	if (isLoading && isMobile)  {
+		return <SkeletonAnimeList />
 	}
 
 	return (

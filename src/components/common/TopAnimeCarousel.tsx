@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Card, CardContent } from '@/components/ui'
+import { Card } from '@/components/ui'
 import {
 	Carousel,
 	CarouselContent,
@@ -9,17 +9,17 @@ import {
 	CarouselPrevious
 } from '@/components/ui'
 import { fetchTopAnime } from '@/tanstack'
-import Image from 'next/image'
 import { useMedia } from 'react-use'
-import { SkeletonAnimeCarousel } from './SkeletonAnime'
+import { SkeletonAnimeCarousel } from './skeleton/SkeletonAnime'
 import { cn } from '@/lib'
 import { MonitorPlay, Star } from 'lucide-react'
+import CardContentCarousel from './carousel/CardContentCarousel'
 
 export const TopAnimeCarousel = () => {
 	const { data: topAnime, isLoading, error } = fetchTopAnime()
 	const isMobile = useMedia('(max-width:1024px)', false)
 
-	if (isLoading && !isMobile) {
+	if (isLoading && isMobile === false) {
 		return <SkeletonAnimeCarousel />
 	}
 	if (error) return <div>Error: {error.message}</div>
@@ -40,16 +40,7 @@ export const TopAnimeCarousel = () => {
 					>
 						<div className="group relative overflow-hidden flex-shrink-0 ">
 							<Card>
-								<CardContent className="cursor-pointer p-0 ">
-									<Image
-										src={anime.images.webp.image_url}
-										alt={anime.title}
-										width={0}
-										height={0}
-										sizes="100vw"
-										className="w-full h-[200px] object-cover "
-									/>
-								</CardContent>
+								<CardContentCarousel anime={anime} />
 								<div className="">
 									<p
 										className={cn(

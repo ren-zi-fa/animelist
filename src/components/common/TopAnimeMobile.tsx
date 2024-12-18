@@ -15,7 +15,7 @@ export const TopAnimeMobile = () => {
   
     return (
         <div className="flex flex-col items-center justify-center px-4">
-            <div className="w-full px-2 h-auto p-2 bg-white font-semibold">
+            <div className="w-full px-2 h-auto p-2 text-black bg-white font-semibold">
                 Top Anime
             </div>
             {anime?.map((anime, index) => (
@@ -30,6 +30,7 @@ export const TopAnimeMobile = () => {
                             width={60}
                             height={20}
                             src={anime.images.webp.image_url}
+                            className='h-auto w-auto'
                         />
                         <div className="text-sm ml-2">
                             <p className="">{anime.title}</p>

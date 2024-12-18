@@ -7,7 +7,7 @@ export const HeaderLogo = () => {
 		<div className="hidden lg:flex">
 			<Link href={'/'}>
 				<Image
-					src={'/logo-animelist.png'}
+					src={'/anime-logo.png'}
 					alt="logo"
 					width={200}
 					height={200}

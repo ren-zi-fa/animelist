@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
 import { ApiResponseById, Anime } from './typeResponse'
+import { useQuery } from '@tanstack/react-query'
 import { AxiosInstance } from '@/lib'
 
 export const FetchAnimeById = (query: string) => {

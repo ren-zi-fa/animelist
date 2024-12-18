@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import { Card } from '@/components/ui'
@@ -14,16 +16,21 @@ import { SkeletonAnimeCarousel } from './skeleton/SkeletonAnime'
 import { cn } from '@/lib'
 import { MonitorPlay, Star } from 'lucide-react'
 import CardContentCarousel from './carousel/CardContentCarousel'
+import { useRouter } from 'next/navigation'
 
 export const TopAnimeCarousel = () => {
 	const { data: topAnime, isLoading, error } = fetchTopAnime()
 	const isMobile = useMedia('(max-width:1024px)', false)
-
+	const router = useRouter()
 	if (isLoading && isMobile === false) {
 		return <SkeletonAnimeCarousel />
 	}
 	if (error) return <div>Error: {error.message}</div>
 
+	const handleNavigateToDetail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>,id:string) => {
+		e.preventDefault
+		router.push(`/detail/${id}`)
+	}
 	return (
 		<Carousel
 			opts={{
@@ -38,7 +45,7 @@ export const TopAnimeCarousel = () => {
 						key={`${anime.mal_id}-${index}`}
 						className="md:basis-1/2 lg:basis-1/4"
 					>
-						<div className="group relative overflow-hidden flex-shrink-0 ">
+						<div className="group relative overflow-hidden flex-shrink-0 " onClick={(e)=>handleNavigateToDetail(e,anime.mal_id)}>
 							<Card>
 								<CardContentCarousel anime={anime} />
 								<div className="">

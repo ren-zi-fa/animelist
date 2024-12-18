@@ -1,27 +1,34 @@
+'use client'
+
 import { fetchSeasonsUpcoming } from '@/tanstack/FetchSeasonUpcoming'
 import React from 'react'
 import {
 	Card,
-	CardContent,
 	Carousel,
 	CarouselContent,
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious
 } from '../ui'
-import Image from 'next/image'
 import { useMedia } from 'react-use'
 import { SkeletonAnimeCarousel } from './skeleton/SkeletonAnime'
 import { cn } from '@/lib'
 import CardContentCarousel from './carousel/CardContentCarousel'
+import { useRouter } from 'next/navigation'
 
 export const UpcomingAnimeCarousel = () => {
 	const { data: upcomingAnime, error, isLoading } = fetchSeasonsUpcoming()
+	const router = useRouter()
 	const isMobile = useMedia('(max-width:1024px)', false)
 	if (isLoading && isMobile === false) {
 		return <SkeletonAnimeCarousel />
 	}
+	
 	if (error) return <div>Error: {error.message}</div>
+	const handleNavigateToDetail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>,id:string) => {
+			e.preventDefault
+			router.push(`/detail/${id}`)
+		}
 	return (
 		<Carousel
 			opts={{
@@ -36,7 +43,7 @@ export const UpcomingAnimeCarousel = () => {
 						key={`${anime.mal_id}-${index}`}
 						className="md:basis-1/2 lg:basis-1/4"
 					>
-						<div className="group relative overflow-hidden flex-shrink-0 ">
+						<div className="group relative overflow-hidden flex-shrink-0 " onClick={(e)=>handleNavigateToDetail(e,anime.mal_id)}>
 							<Card>
 								<CardContentCarousel anime={anime} />
 								<div className="">

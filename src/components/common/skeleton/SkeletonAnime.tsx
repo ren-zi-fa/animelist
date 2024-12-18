@@ -59,3 +59,81 @@ export const SkeletonAnimeList = () => (
 		</div>
 	</div>
 )
+export const SkeletonAnimeResult = () => (
+	<div className=" grid lg:grid-cols-2  gap-4 pb-10 ">
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3 ">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ms-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+		<div className="flex px-3">
+			<Skeleton className="w-[100px] h-[150px] rounded-xl mb-2" />
+			<div className="space-y-2 ">
+				<Skeleton className="h-4 w-[100px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+				<Skeleton className="h-4 w-[70px]" />
+			</div>
+		</div>
+	</div>
+)
+
+

@@ -12,22 +12,21 @@ export interface Anime {
 	streaming: Streaming[]
 	status: string
 	episodes: string
+	trailer: Trailer
 	genres: Genre[]
 }
 type Genre = {
 	type: string
 	name: string
 }
+export type Trailer = {
+	url: string
+	embed_url: string
+	name: string
+	youtube_id: string
+}
 
-export interface AnimeRecommendation {
-	mal_id: string
-	entry: Entry[]
-}
-export interface ApiResponseRecommendation<T> {
-	data: {
-		data: T
-	}
-}
+
 type Entry = {
 	mal_id: string
 	title: string

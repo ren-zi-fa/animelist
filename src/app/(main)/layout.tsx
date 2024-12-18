@@ -5,7 +5,7 @@ import { PropsWithChildren } from 'react'
 const MainLayout = ({ children }: PropsWithChildren) => {
 	return (
 		<>
-			<main className="">{children}</main>
+			<div className="">{children}</div>
 		</>
 	)
 }

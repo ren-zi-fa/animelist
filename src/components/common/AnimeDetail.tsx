@@ -3,16 +3,19 @@ import { Anime, FetchAnimeById } from '@/tanstack'
 import Image from 'next/image'
 import React from 'react'
 import { useMedia } from 'react-use'
-
+import { YoutubePlayer } from './YoutubePlayer'
+import { TopAnimeMobile } from './TopAnimeMobile'
 
 export const AnimeDetail = ({ query }: { query: string }) => {
-	const { data: details } = FetchAnimeById(query)
+	const { data: details,isLoading } = FetchAnimeById(query)
 	const isMobile = useMedia('(max-width:1024px)', false)
-
+	if (isLoading){
+		return <div className="loader-circle"></div>
+	}
 	const renderDetailsDesktop = () => {
 		if (!details) return null
-		return Object.values(details).map((detail: Anime) => (
-			<div key={detail.mal_id} className="">
+		return Object.values(details).map((detail: Anime, index) => (
+			<div key={`${detail.mal_id}-${index}`} className="">
 				<div className="text-xl font-bold text-white px-4 py-2 border-b-[1px]">
 					{detail.title}
 				</div>
@@ -23,6 +26,7 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 							alt={detail.title}
 							width={280}
 							height={100}
+							className='h-auto w-auto'
 						/>
 					</div>
 					<div className="lg:col-span-4 px-4">
@@ -63,13 +67,20 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 						<p>{detail.synopsis}</p>
 					</div>
 				</div>
+				<div className="mt-5 flex justify-center py-2">
+					<YoutubePlayer
+						videoId={detail.trailer.youtube_id}
+						height="400"
+						width="800"
+					/>
+				</div>
 			</div>
 		))
 	}
 	const renderDetailsMobile = () => {
 		if (!details) return null
-		return Object.values(details).map((detail: Anime) => (
-			<div key={detail.mal_id} className=" p-0 text-white">
+		return Object.values(details).map((detail: Anime, index) => (
+			<div key={`${detail.mal_id}-${index}`} className=" p-0 text-white">
 				<div className=" bg-violet-500 text-center rounded-md mb-4">
 					<p className="p-4  text-xl">{detail.title}</p>
 				</div>
@@ -78,39 +89,52 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 					width={200}
 					height={70}
 					alt={detail.title}
-					className="mx-auto mb-4"
+					priority
+					className="mx-auto mb-4 h-auto w-auto"
 				/>
 				<div className="">
-					<table >
-						<tr >
-							<td>Title </td>
-							<td> :</td>
-							<td>{detail.title}</td>
-						</tr>
-
-						<tr>
-							<td>Score</td>
-							<td>:</td>
-							<td>{detail.score}</td>
-						</tr>
-						<tr>
-							<td>Members</td>
-							<td>:</td>
-							<td>{detail.members}</td>
-						</tr>
-						<tr>
-							<td>Rating</td>
-							<td>:</td>
-							<td>{detail.rating}</td>
-						</tr>
-						<tr>
-							<td>Popularity</td>
-							<td>:</td>
-							<td>{detail.members}</td>
-						</tr>
+					<table>
+						<tbody>
+							<tr>
+								<td>Title </td>
+								<td> :</td>
+								<td>{detail.title}</td>
+							</tr>
+							<tr>
+								<td>Score</td>
+								<td>:</td>
+								<td>{detail.score}</td>
+							</tr>
+							<tr>
+								<td>Members</td>
+								<td>:</td>
+								<td>{detail.members}</td>
+							</tr>
+							<tr>
+								<td>Rating</td>
+								<td>:</td>
+								<td>{detail.rating}</td>
+							</tr>
+							<tr>
+								<td>Popularity</td>
+								<td>:</td>
+								<td>{detail.members}</td>
+							</tr>
+						</tbody>
 					</table>
-					<p className='font-sans text-yellow-400 my-3 text-2xl text-center'>synopsis</p>
+					<p className="font-sans text-yellow-400 my-3 text-2xl text-center">
+						synopsis
+					</p>
 					<p>{detail.synopsis}</p>
+					<div className="mt-5 py-2 flex justify-center">
+						<YoutubePlayer
+							videoId={detail.trailer.youtube_id}
+							height="200"
+							width="360"
+						/>
+					</div>
+					.
+					<TopAnimeMobile/>
 				</div>
 			</div>
 		))

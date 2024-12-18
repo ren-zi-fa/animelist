@@ -6,7 +6,6 @@ import { UpcomingAnimeCarousel } from './UpcomingAnimeCarousel'
 import { AnimeSchedules } from './AnimeSchedules'
 import { useMedia } from 'react-use'
 import { TopAnimeMobile } from './TopAnimeMobile'
-import { UpcomingMobile } from './UpcomingMobile'
 
 export const AnimeList = () => {
 	const isMobile = useMedia('(max-width:1024px)', false)
@@ -31,7 +30,7 @@ export const AnimeList = () => {
 							<h1 className="text-center text-3xl mb-4 text-gray-300">
 								Seasonal Upcoming Anime
 							</h1>
-							<UpcomingAnimeCarousel/>
+							<UpcomingAnimeCarousel />
 						</div>
 					)}
 				</div>

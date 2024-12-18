@@ -23,13 +23,17 @@ const routes = [
 		label: 'Home'
 	},
 	{
-		href: '/Community',
+		href: 'https://myanimelist.net/forum/',
 		label: 'Community'
 	},
 	{
-		href: '/jikan',
+		href: 'https://docs.api.jikan.moe/',
 		label: 'Api Documentation'
-	}
+	},
+	// {
+	// 	href:'/api/auth/signin',
+	// 	label: 'Log In'
+	// }
 ]
 
 export const Navigation = () => {

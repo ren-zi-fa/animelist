@@ -1,7 +1,7 @@
 {
 	"name": "animelist",
 	"version": "0.1.0",
-	"private": false,
+	"private": true,
 	"description": "belajar consume api dari jikan.moe ",
 	"scripts": {
 		"dev": "next dev",

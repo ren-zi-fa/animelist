@@ -64,7 +64,7 @@ export const Navigation = () => {
 						<SheetHeader>
 							<SheetTitle>
 								<Image
-									src={'/logo-animelist.png'}
+									src={'/anime-logo.png'}
 									alt="logo"
 									width={150}
 									height={30}

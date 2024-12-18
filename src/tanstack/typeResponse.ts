@@ -26,13 +26,6 @@ export type Trailer = {
 	youtube_id: string
 }
 
-
-type Entry = {
-	mal_id: string
-	title: string
-	images: Images
-}
-
 interface Images {
 	webp: ImageUrl
 }

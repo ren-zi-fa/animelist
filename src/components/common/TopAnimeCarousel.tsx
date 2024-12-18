@@ -27,8 +27,11 @@ export const TopAnimeCarousel = () => {
 	}
 	if (error) return <div>Error: {error.message}</div>
 
-	const handleNavigateToDetail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>,id:string) => {
-		e.preventDefault
+	const handleNavigateToDetail = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: string
+	) => {
+		e.preventDefault()
 		router.push(`/detail/${id}`)
 	}
 	return (
@@ -45,7 +48,10 @@ export const TopAnimeCarousel = () => {
 						key={`${anime.mal_id}-${index}`}
 						className="md:basis-1/2 lg:basis-1/4"
 					>
-						<div className="group relative overflow-hidden flex-shrink-0 " onClick={(e)=>handleNavigateToDetail(e,anime.mal_id)}>
+						<div
+							className="group relative overflow-hidden flex-shrink-0 "
+							onClick={(e) => handleNavigateToDetail(e, anime.mal_id)}
+						>
 							<Card>
 								<CardContentCarousel anime={anime} />
 								<div className="">

@@ -15,7 +15,7 @@ interface CardContentCarouselProps {
 	anime: Anime
 }
 
-const CardContentCarousel: React.FC<CardContentCarouselProps> = ({anime}) => {
+const CardContentCarousel: React.FC<CardContentCarouselProps> = ({ anime }) => {
 	return (
 		<CardContent className="cursor-pointer p-0 ">
 			<Image

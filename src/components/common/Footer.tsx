@@ -7,7 +7,7 @@ export const Footer = () => {
 				<div className="grid grid-cols-2  gap-8 px-4 py-6 lg:py-8 md:grid-cols-4 justify-center">
 					<div>
 						<h2 className="mb-6 text-sm font-semibold text-gray-100 uppercase ">
-							 Follow
+							Follow
 						</h2>
 						<ul className="text-white dark:text-gray-400 font-medium">
 							<li className="mb-4">

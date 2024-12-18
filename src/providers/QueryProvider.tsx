@@ -33,7 +33,7 @@ export function QueryProvider({ children }: PropsWithChildren) {
 	const queryClient = getQueryClient()
 
 	return (
-		<QueryClientProvider client={queryClient} >
+		<QueryClientProvider client={queryClient}>
 			{children}
 			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 		</QueryClientProvider>

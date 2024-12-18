@@ -13,5 +13,6 @@ pnpm dev
 # or
 bun dev
 ```
+
 ![Gambar 1](https://github.com/ren-zi-fa/animelist/blob/renzi_branch/pic1.png)
 ![Gambar 2](https://github.com/ren-zi-fa/animelist/blob/renzi_branch/pic2.png)

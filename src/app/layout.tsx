@@ -3,7 +3,6 @@ import './globals.css'
 import { QueryProvider } from '@/providers/QueryProvider'
 import { Footer, Header } from '@/components/common'
 
-
 export const metadata: Metadata = {
 	title: 'アニメ',
 	description: 'fetch from jikan moe'
@@ -20,7 +19,7 @@ export default function RootLayout({
 				<body suppressHydrationWarning={true}>
 					<Header />
 					<main className="lg:px-10 ">{children}</main>
-					<Footer/>
+					<Footer />
 				</body>
 			</QueryProvider>
 		</html>

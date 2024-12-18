@@ -29,7 +29,7 @@ const routes = [
 	{
 		href: 'https://docs.api.jikan.moe/',
 		label: 'Api Documentation'
-	},
+	}
 	// {
 	// 	href:'/api/auth/signin',
 	// 	label: 'Log In'

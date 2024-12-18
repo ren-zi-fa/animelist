@@ -4,7 +4,6 @@ import { fetchSchedules } from '@/tanstack/FetchSchedules'
 import Image from 'next/image'
 import React from 'react'
 import { SkeletonAnimeList } from './skeleton/SkeletonAnime'
-import { useMedia } from 'react-use'
 import { useRouter } from 'next/navigation'
 
 export const AnimeSchedules = () => {
@@ -20,7 +19,7 @@ export const AnimeSchedules = () => {
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		id: string
 	) => {
-		e.preventDefault
+		e.preventDefault()
 		router.push(`/detail/${id}`)
 	}
 
@@ -34,7 +33,10 @@ export const AnimeSchedules = () => {
 					className="py-2 bg-violet-900 w-full px-2 text-white "
 					key={schedule.mal_id}
 				>
-					<div className="flex hover:cursor-pointer" onClick={(e) => handleNavigateToDetail(e,schedule.mal_id)}>
+					<div
+						className="flex hover:cursor-pointer"
+						onClick={(e) => handleNavigateToDetail(e, schedule.mal_id)}
+					>
 						<div className="font-bold text-xl mr-2">{index + 1}</div>
 						<Image
 							alt={schedule.title}

@@ -23,12 +23,15 @@ export const UpcomingAnimeCarousel = () => {
 	if (isLoading && isMobile === false) {
 		return <SkeletonAnimeCarousel />
 	}
-	
+
 	if (error) return <div>Error: {error.message}</div>
-	const handleNavigateToDetail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>,id:string) => {
-			e.preventDefault
-			router.push(`/detail/${id}`)
-		}
+	const handleNavigateToDetail = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: string
+	) => {
+		e.preventDefault()
+		router.push(`/detail/${id}`)
+	}
 	return (
 		<Carousel
 			opts={{
@@ -43,7 +46,10 @@ export const UpcomingAnimeCarousel = () => {
 						key={`${anime.mal_id}-${index}`}
 						className="md:basis-1/2 lg:basis-1/4"
 					>
-						<div className="group relative overflow-hidden flex-shrink-0 " onClick={(e)=>handleNavigateToDetail(e,anime.mal_id)}>
+						<div
+							className="group relative overflow-hidden flex-shrink-0 "
+							onClick={(e) => handleNavigateToDetail(e, anime.mal_id)}
+						>
 							<Card>
 								<CardContentCarousel anime={anime} />
 								<div className="">

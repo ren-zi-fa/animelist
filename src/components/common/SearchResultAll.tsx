@@ -16,15 +16,12 @@ export const SearchResultAll = ({ keyword }: { keyword: string }) => {
 		fetchRecommendation()
 	const isMobile = useMedia('(max-width:1024px)', false)
 
-
-
-
 	const router = useRouter()
 	const handleNavigateToDetail = (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		id: string
 	) => {
-		e.preventDefault
+		e.preventDefault()
 		router.push(`/detail/${id}`)
 	}
 	const renderRecommendationAnimeDesktop = () => {

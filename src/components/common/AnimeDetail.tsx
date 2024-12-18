@@ -7,9 +7,9 @@ import { YoutubePlayer } from './YoutubePlayer'
 import { TopAnimeMobile } from './TopAnimeMobile'
 
 export const AnimeDetail = ({ query }: { query: string }) => {
-	const { data: details,isLoading } = FetchAnimeById(query)
+	const { data: details, isLoading } = FetchAnimeById(query)
 	const isMobile = useMedia('(max-width:1024px)', false)
-	if (isLoading){
+	if (isLoading) {
 		return <div className="loader-circle"></div>
 	}
 	const renderDetailsDesktop = () => {
@@ -26,7 +26,7 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 							alt={detail.title}
 							width={280}
 							height={100}
-							className='h-auto w-auto'
+							className="h-auto w-auto"
 						/>
 					</div>
 					<div className="lg:col-span-4 px-4">
@@ -134,7 +134,7 @@ export const AnimeDetail = ({ query }: { query: string }) => {
 						/>
 					</div>
 					.
-					<TopAnimeMobile/>
+					<TopAnimeMobile />
 				</div>
 			</div>
 		))

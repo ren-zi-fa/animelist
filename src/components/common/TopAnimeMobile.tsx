@@ -1,16 +1,26 @@
+'use client'
+
 import { fetchTopAnime } from '@/tanstack'
 import Image from 'next/image'
 import React from 'react'
 import { SkeletonAnimeList } from './skeleton/SkeletonAnime'
 import { useMedia } from 'react-use'
-
+import { useRouter } from 'next/navigation'
 export const TopAnimeMobile = () => {
 	const { data: anime, isLoading, error } = fetchTopAnime()
 	const isMobile = useMedia('(max-width:1024px)', false)
-
+	const router = useRouter()
 	if (error) return <div>Error: {error.message}</div>
 	if (isLoading && isMobile) {
 		return <SkeletonAnimeList />
+	}
+
+	const handleNavigateToDetail = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: string
+	) => {
+		e.preventDefault()
+		router.push(`/detail/${id}`)
 	}
 
 	return (
@@ -23,7 +33,10 @@ export const TopAnimeMobile = () => {
 					className="py-2 bg-violet-900 w-full px-2 text-white "
 					key={anime.mal_id}
 				>
-					<div className="flex">
+					<div
+						className="flex hover:cursor-pointer"
+						onClick={(e) => handleNavigateToDetail(e, anime.mal_id)}
+					>
 						<div className="font-bold text-xl mr-2">{index + 1}</div>
 						<Image
 							alt={anime.title}
@@ -33,7 +46,7 @@ export const TopAnimeMobile = () => {
 							className="h-auto w-auto"
 						/>
 						<div className="text-sm ml-2">
-							<p className="">{anime.title}</p>
+							<p className="hover:underline">{anime.title}</p>
 							<p className="text-yellow-300 text-xs">
 								{anime.broadcast.day} {anime.broadcast.time}
 							</p>
